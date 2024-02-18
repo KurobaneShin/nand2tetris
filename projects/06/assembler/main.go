@@ -58,18 +58,18 @@ func Compile(src string, out string) {
 					st[dest] = defaultCustomVarLen
 					defaultCustomVarLen++
 				}
-				code.WriteAInstruction(cw,st[dest])
+				cw.WriteAInstruction(st[dest])
 			} else {
 				// if value, use directly
 				aInt, err := strconv.Atoi(dest)
 				if err != nil {
           panic(err)
         }
-				code.WriteAInstruction(cw,aInt)
+				cw.WriteAInstruction(aInt)
 			}
 		// process C instruction
 		case parser.CmdTypeC:
-			code.WriteCInstruction(cw,dest, comp, jump)
+			cw.WriteCInstruction(dest, comp, jump)
 		}
 	}
 
