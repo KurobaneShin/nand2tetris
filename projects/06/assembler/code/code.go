@@ -13,12 +13,11 @@ func New(outputFile string) *os.File {
 	return file
 }
 
-func Close(file *os.File) {
-	file.Close()
-}
-
 func writeln(file *os.File, s string) {
-	file.WriteString(s + "\n")
+ _, err :=	file.WriteString(s + "\n")
+  if err != nil {
+    panic(err)
+  }
 }
 
 func WriteAInstruction(file *os.File, value int) {
